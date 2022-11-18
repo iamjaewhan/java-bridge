@@ -46,6 +46,14 @@ public class InputView {
         return true;
     }
 
+    private int getIntegerMatchWith(String regex) {
+        String input = Console.readLine();
+
+        if (!input.matches(bridgeSizeInputRegex)) throw new IllegalArgumentException();
+        if (!isValidRange(Integer.valueOf(input))) throw new IllegalArgumentException();
+        return Integer.valueOf(input);
+    }
+
     private String getStringMatchWith(String regex) {
         String input = Console.readLine();
         if (!input.matches(regex)) throw new IllegalArgumentException();
