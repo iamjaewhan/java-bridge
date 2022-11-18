@@ -28,5 +28,9 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+    private String getStringMatchWith(String regex) {
+        String input = Console.readLine();
+        if (!input.matches(regex)) throw new IllegalArgumentException();
+        return input;
     }
 }
