@@ -17,6 +17,9 @@ public class InputView {
     private static final String readBridgeSizeMessage = "다리의 길이를 입력해주세요.";
     private static final String readMovingMessage = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String readwhetherRetryMessage = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final int mininumBridgeLength = 3;
+    private static final int maxinumBridgeLength = 20;
+    
     /**
      * 다리의 길이를 입력받는다.
      */
@@ -36,6 +39,13 @@ public class InputView {
      */
     public String readGameCommand() {
         return null;
+
+    private boolean isValidRange(int number) {
+        if (number < mininumBridgeLength || number > maxinumBridgeLength)
+            return false;
+        return true;
+    }
+
     private String getStringMatchWith(String regex) {
         String input = Console.readLine();
         if (!input.matches(regex)) throw new IllegalArgumentException();
