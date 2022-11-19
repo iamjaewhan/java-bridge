@@ -17,14 +17,23 @@ public class InputView {
     private static final String readBridgeSizeMessage = "다리의 길이를 입력해주세요.";
     private static final String readMovingMessage = "이동할 칸을 선택해주세요. (위: U, 아래: D)";
     private static final String readwhetherRetryMessage = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
+    private static final String invalidBridgeSizeMessage = "[ERROR] 다리 길이는 3부터 20 사이의 정수여야 합니다.";
     private static final int mininumBridgeLength = 3;
     private static final int maxinumBridgeLength = 20;
     
     /**
-     * 다리의 길이를 입력받는다.
+     * 다리의 길이를 입력받는다. : 다리의 길이는 3~20 사이
+     * 유효하지 않은 입력값은 에러를 던지고 다시 입력받는다.
      */
     public int readBridgeSize() {
-        return 0;
+        System.out.println(readBridgeSizeMessage);
+
+        try {
+            return getIntegerMatchWith(bridgeSizeInputRegex);
+        } catch (IllegalArgumentException e) {
+            System.out.println(invalidBridgeSizeMessage);
+            return readBridgeSize();
+        }
     }
 
     /**
