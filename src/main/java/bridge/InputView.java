@@ -19,6 +19,7 @@ public class InputView {
     private static final String readwhetherRetryMessage = "게임을 다시 시도할지 여부를 입력해주세요. (재시도: R, 종료: Q)";
     private static final String invalidBridgeSizeMessage = "[ERROR] 다리 길이는 3부터 20 사이의 정수여야 합니다.";
     private static final String invalidMovingInputMessage = "[ERROR] 이동할 칸은 U 또는 D로 이동할 수 있습니다.";
+    private static final String invalidRetryInputMessage = "[ERROR] 재시도 여부는 R 또는 Q로 입력해주세요.";
     private static final int mininumBridgeLength = 3;
     private static final int maxinumBridgeLength = 20;
     
@@ -52,10 +53,18 @@ public class InputView {
     }
 
     /**
-     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다.
+     * 사용자가 게임을 다시 시도할지 종료할지 여부를 입력받는다. : R/Q
      */
     public String readGameCommand() {
-        return null;
+        System.out.println(readwhetherRetryMessage);
+
+        try {
+            return getStringMatchWith(whetherRetryInputRegex);
+        } catch (IllegalArgumentException e) {
+            System.out.println(invalidRetryInputMessage);
+            return readGameCommand();
+        }
+    }
 
     private boolean isValidRange(int number) {
         if (number < mininumBridgeLength || number > maxinumBridgeLength)
